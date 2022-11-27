@@ -21,7 +21,7 @@ void addEdge(int x,int y)
 }
  
 // Fungsi untuk melakukan Breadth First Search
-void BFS(int start)
+void BFS(int start, int end)
 {
     // Menambahkan bool visited agar vertex yang sudah dikunjungi tidak dikunjungi lagi
     // Nilai awal false karena belum ada vertex yang dikunjungi diawal
@@ -42,7 +42,7 @@ void BFS(int start)
   
         // Loop untuk setiap tetangga (adjacent) yang ada pada vertex tersebut
         for (int i = 0; i < adj[vis].size(); i++) {
-            if (adj[vis][i] == 1 && (!visited[i])) {
+            if (adj[vis][i] == 1 && (!visited[i]) && i != end ) {
   
                 // Push vertex tetangga ke queue
                 queue.push_back(i);
@@ -58,7 +58,7 @@ int main()
 {
     // V = jumlah vertex
     int v = 21;
-    int start;
+    int start, end;
  
  
     // Adjacency Matrix
@@ -114,8 +114,14 @@ int main()
     cout << "Enter Starting Vertex: V";
     cin >> start;
 
+    cout << "Enter Ending Vertex: V";
+    cin >> end;
+
+    if (end < 0) // Jika vertex akhir kurang atau sama dengan 0 set nilai end menjadi NULL
+        int *end = NULL;
+
 	cout << "Following is Breadth First Traversal " << "(starting from V" << start << ") \n";
-   
-    BFS(start, end);
+	BFS(start, end);
+
     return 0;
 }

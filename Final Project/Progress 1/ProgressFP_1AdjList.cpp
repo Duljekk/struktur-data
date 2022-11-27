@@ -52,7 +52,7 @@ void Graph::BFS(int s, int x)
 	queue.push_back(s);
 
     // Tandai vertex akhir sudah dikunjungi
-    visited[x] = true;
+    // visited[x] = true;
 
 	while(!queue.empty()) // Cek jika queue tidak kosong maka lakukan loop untuk BFS
 	{
@@ -62,7 +62,7 @@ void Graph::BFS(int s, int x)
 
 		for (auto adjecent: adj[s])
 		{
-			if (!visited[adjecent] && adjacent) // Cek apakah vertex tetangga (adjacent) sudah dikunjungi atau belum
+			if (!visited[adjecent] && s != x) // Cek apakah vertex tetangga (adjacent) sudah dikunjungi atau belum & cek apakah vertex tersebut merupakan ending vertex atau bukan
 			{
                 // Jika belum, tandai vertex sudah dikunjungi dan masukkan ke queue
 				visited[adjecent] = true; 
@@ -126,13 +126,11 @@ int main()
 
     cout << "Enter Starting Vertex: V";
     cin >> start;
-    cout << endl;
 
     cout << "Enter Ending Vertex: V";
     cin >> end;
-    cout << endl;
 
-    if (end <= 0) // Jika vertex akhir kurang atau sama dengan 0 set nilai end menjadi NULL
+    if (end < 0) // Jika vertex akhir kurang atau sama dengan 0 set nilai end menjadi NULL
         int *end = NULL;
 
 	cout << "Following is Breadth First Traversal " << "(starting from V" << start << ") \n";
